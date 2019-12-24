@@ -1,4 +1,10 @@
-<?php require('includes/handlers/register-handler.php'); ?>
+<?php
+require('includes/classes/Account.php');
+$account = new Account();
+
+require('includes/handlers/register-handler.php');
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
