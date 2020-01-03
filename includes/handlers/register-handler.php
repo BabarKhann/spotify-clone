@@ -41,8 +41,9 @@ if (isset($_POST['registerButton'])) :
     $wasSuccessful = $account->register($username, $firstName, $lastName, $email, $email2, $password, $password2);
 
     if ($wasSuccessful) :
-        echo "yahn hun";
-    // header("Location: index.php");
+        header("Location: index.php");
+    else :
+        dd("Something Wrong !!!");
     endif;
 
 endif;

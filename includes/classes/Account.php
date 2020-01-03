@@ -1,17 +1,11 @@
 <?php
 class Account
 {
-    private $errors = [];
+    public $errors = [];
 
     public function __construct()
     {
-        $this->errors = [
-            "username" => '',
-            "firstname" => '',
-            "lastName" => '',
-            "email" => '',
-            "password" => '',
-        ];
+        $this->errors = [];
     }
 
     public function register($username, $firstName, $lastName, $email, $email2, $password, $password2)
@@ -23,6 +17,7 @@ class Account
         $this->validatePasswords($password, $password2);
 
         if (empty($this->errors)) :
+            // Insert into DB
             return true;
         else :
             return false;
@@ -88,7 +83,7 @@ class Account
 
     private function validatePasswords($value1, $value2)
     {
-        if ($value1 !== $value2) :
+        if ($value1 != $value2) :
             $this->errors['password'] = "Your passwords don't match";
             // array_push($this->errors, "");
             return;
@@ -100,7 +95,7 @@ class Account
             return;
         endif;
 
-        if (strlen($value1) < 5 || strlen($value1 > 20)) :
+        if (strlen($value1) < 5 || strlen($value1)  > 20) :
             $this->errors['password'] = "Your password must be between 5 and 30 characters";
             // array_push($this->errors, "");
             return;
