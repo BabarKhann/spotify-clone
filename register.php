@@ -1,6 +1,7 @@
 <?php
 require('helpers.php');
 require('includes/classes/Account.php');
+require('includes/classes/Constants.php');
 $account = new Account();
 require('includes/handlers/register-handler.php');
 
