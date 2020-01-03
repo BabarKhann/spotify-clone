@@ -36,37 +36,37 @@ require('includes/handlers/register-handler.php');
             <h3>Login to your account</h3>
             <p>
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="e.g. johnSmilga" required>
+                <input type="text" id="username" name="username" value="<?= oldValue('username') ?>" placeholder="e.g. johnSmilga" required>
                 <?= $account->getError('username'); ?>
             </p>
             <p>
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="e.g. John" required>
+                <input type="text" id="firstName" name="firstName" value="<?= oldValue('firstName') ?>" placeholder="e.g. John" required>
                 <?= $account->getError('firstname'); ?>
             </p>
             <p>
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="e.g. Smilga" required>
+                <input type="text" id="lastName" name="lastName" value="<?= oldValue('lastName') ?>" placeholder="e.g. Smilga" required>
                 <?= $account->getError('lastname'); ?>
             </p>
             <p>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="e.g. smilga@gmail.com" required>
+                <input type="email" id="email" name="email" value="<?= oldValue('email') ?>" placeholder="e.g. smilga@gmail.com" required>
                 <?= $account->getError('email'); ?>
             </p>
             <p>
                 <label for="email2">Confirm Email</label>
-                <input type="email" id="email2" name="email2" placeholder="e.g. smilga@gmail.com" required>
+                <input type="email" id="email2" name="email2" value="<?= oldValue('email2') ?>" placeholder="e.g. smilga@gmail.com" required>
                 <?= $account->getError('email'); ?>
             </p>
             <p>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" value="<?= oldValue('password') ?>" required>
                 <?= $account->getError('password'); ?>
             </p>
             <p>
                 <label for="password2">Confirm Password</label>
-                <input type="password" id="password2" name="password2" required>
+                <input type="password" id="password2" name="password2" value="<?= oldValue('password2') ?>" required>
                 <?= $account->getError('password'); ?>
             </p>
 

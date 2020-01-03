@@ -43,7 +43,7 @@ if (isset($_POST['registerButton'])) :
     if ($wasSuccessful) :
         header("Location: index.php");
     else :
-        dd("Something Wrong !!!");
+        
     endif;
 
 endif;
