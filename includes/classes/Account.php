@@ -1,10 +1,13 @@
 <?php
+
 class Account
 {
+    private $conn;
     public $errors = [];
 
-    public function __construct()
+    public function __construct($conn)
     {
+        $this->conn = $conn;
         $this->errors = [];
     }
 
@@ -17,8 +20,7 @@ class Account
         $this->validatePasswords($password, $password2);
 
         if (empty($this->errors)) :
-            // Insert into DB
-            return true;
+            return $this->insertUserDetails($username, $firstName, $lastName, $email, $password);
         else :
             return false;
         endif;
@@ -29,7 +31,7 @@ class Account
         if (array_key_exists($error, $this->errors)) :
             return "<span class='errorMessage'>" . $this->errors[$error] . "</span>";
         else :
-                $error = "";
+            $error = "";
         endif;
 
         // if (!in_array($error, $this->errors)) :
@@ -37,6 +39,20 @@ class Account
         // endif;
 
         // return "<span class='errorMessage'>$error</span>";
+    }
+
+    private function insertUserDetails($username, $firstName, $lastName, $email, $password)
+    {
+        $encryptedPass = md5($password);
+        $profilePic = "assets/images/profile_pics/user.png";
+        $date = date("Y-m-d");
+
+        $query = "INSERT INTO users
+                VALUES ('', '$username', '$firstName', '$lastName', '$email', '$encryptedPass', '$profilePic', '$date')";
+
+        $result = mysqli_query($this->conn, $query);
+
+        return $result;
     }
 
     private function validateUserName($value)
@@ -95,7 +111,7 @@ class Account
             return;
         endif;
 
-        if (strlen($value1) < 5 || strlen($value1)  > 20) :
+        if (strlen($value1) < 5 || strlen($value1) > 20) :
             $this->errors['password'] = Constants::$passwordCharacters;
             // array_push($this->errors, "");
             return;
