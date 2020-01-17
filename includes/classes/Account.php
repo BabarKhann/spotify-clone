@@ -26,10 +26,10 @@ class Account
 
     public function getError($error)
     {
-        if (!array_key_exists($error, $this->errors)) :
-            $error = "";
-        else :
+        if (array_key_exists($error, $this->errors)) :
             return "<span class='errorMessage'>" . $this->errors[$error] . "</span>";
+        else :
+                $error = "";
         endif;
 
         // if (!in_array($error, $this->errors)) :
