@@ -1,5 +1,8 @@
 <?php
 require("./includes/config.php");
+if (isset($_SESSION['userLoggedIn'])) :
+    header("Location: index.php");
+endif;
 require('helpers.php');
 
 require('includes/classes/Account.php');
