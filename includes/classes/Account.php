@@ -11,6 +11,19 @@ class Account
         $this->errors = [];
     }
 
+    public function login($username, $pass)
+    {
+        $pass = md5($pass);
+        $query = mysqli_query($this->conn, "SELECT * FROM users WHERE username = '$username' AND password = '$pass'");
+
+        if (mysqli_num_rows($query) === 1) :
+            return true;
+        else :
+            $this->errors['login'] = Constants::$loginFailed;
+            return false;
+        endif;
+    }
+
     public function register($username, $firstName, $lastName, $email, $email2, $password, $password2)
     {
         $this->validateUserName($username);
@@ -29,9 +42,9 @@ class Account
     public function getError($error)
     {
         if (array_key_exists($error, $this->errors)) :
-            return "<span class='errorMessage'>" . $this->errors[$error] . "</span>";
+            return "<span class='errorMessage'>" . $this->errors[$error] . '</span>';
         else :
-            $error = "";
+            $error = '';
         endif;
 
         // if (!in_array($error, $this->errors)) :
@@ -44,8 +57,8 @@ class Account
     private function insertUserDetails($username, $firstName, $lastName, $email, $password)
     {
         $encryptedPass = md5($password);
-        $profilePic = "assets/images/profile_pics/user.png";
-        $date = date("Y-m-d");
+        $profilePic = 'assets/images/profile_pics/user.png';
+        $date = date('Y-m-d');
 
         $query = "INSERT INTO users
                 VALUES ('', '$username', '$firstName', '$lastName', '$email', '$encryptedPass', '$profilePic', '$date')";
@@ -55,11 +68,18 @@ class Account
         return $result;
     }
 
-    private function validateUserName($value)
+    private function validateUserName($username)
     {
-        if (strlen($value) < 5 || strlen($value > 25)) :
+        if (strlen($username) < 5 || strlen($username > 25)) :
             $this->errors['username'] = Constants::$userNameCharacters;
             // array_push($this->errors, "Your username must be between 5 and 25 characters");
+            return;
+        endif;
+
+        $check_username = mysqli_query($this->conn, "SELECT username FROM users WHERE username = '$username'");
+
+        if (mysqli_num_rows($check_username) != 0) :
+            $this->errors['username'] = Constants::$userNameTaken;
             return;
         endif;
     }
@@ -82,17 +102,24 @@ class Account
         endif;
     }
 
-    private function validateEmails($value1, $value2)
+    private function validateEmails($email1, $email2)
     {
-        if ($value1 !== $value2) :
+        if ($email1 !== $email2) :
             $this->errors['email'] = Constants::$emailDoNotMatch;
             // array_push($this->errors, "Your emails don't match");
             return;
         endif;
 
-        if (!filter_var($value1, FILTER_VALIDATE_EMAIL)) :
+        if (!filter_var($email1, FILTER_VALIDATE_EMAIL)) :
             $this->errors['email'] = Constants::$emailInvalid;
             // array_push($this->errors, "Email is invalid");
+            return;
+        endif;
+
+        $check_email = mysqli_query($this->conn, "SELECT email FROM users WHERE email = '$email1'");
+
+        if (mysqli_num_rows($check_email) != 0) :
+            $this->errors['email'] = Constants::$emailTaken;
             return;
         endif;
     }
