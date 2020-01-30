@@ -1,10 +1,11 @@
 <?php
 require('./includes/config.php');
+require('./helpers.php');
 
 if (isset($_SESSION['userLoggedIn'])) :
     $userLoggedIn = $_SESSION['userLoggedIn'];
 else :
-    header("Location: register.php");
+    redirect("register.php");
 endif;
 ?>
 
@@ -19,7 +20,7 @@ endif;
 </head>
 
 <body>
-    Index Page
+Index Page
 </body>
 
 </html>
