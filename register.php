@@ -47,7 +47,7 @@ require('includes/handlers/register-handler.php');
                     <input type="password" id="loginPassword" name="loginPassword" required>
                 </p>
 
-                <button type="submit" name="loginButton">Login</button>
+                <button type="submit" name="loginButton">LOG IN</button>
             </form>
             <form action="register.php" id="registerForm" method="POST">
                 <h2>Login to your account</h2>
