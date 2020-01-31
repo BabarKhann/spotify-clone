@@ -33,7 +33,7 @@ require('includes/handlers/register-handler.php');
     <div id="loginContainer">
         <div id="inputContainer">
             <form action="register.php" id="loginForm" method="POST">
-                <h3>Login to your account</h3>
+                <h2>Login to your account</h2>
                 <p class="error" style="color: red">
                     <?= $account->getError('login'); ?>
                 </p>
@@ -50,7 +50,7 @@ require('includes/handlers/register-handler.php');
                 <button type="submit" name="loginButton">Login</button>
             </form>
             <form action="register.php" id="registerForm" method="POST">
-                <h3>Login to your account</h3>
+                <h2>Login to your account</h2>
                 <p>
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" value="<?= oldValue('username') ?>"
