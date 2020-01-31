@@ -29,6 +29,27 @@ body {
     max-width: 1024px;
 }
 
+::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+:-moz-placeholder {
+    color: #ffffff;
+}
+
+::-moz-placeholder {
+    color: #ffffff;
+}
+
+:-ms-input-placeholder {
+    color: #ffffff;
+}
+
+::-ms-input-placeholder {
+    color: #ffffff;
+}
+
+
 #inputContainer {
     width: 400px;
     padding: 45px;
@@ -48,4 +69,10 @@ body {
     height: 30px;
     line-height: 30px;
     width: 100%;
+}
+
+#inputContainer label {
+    color: #a0a0a0;
+    font-size: 16px;
+    margin-top: 15px;
 }
