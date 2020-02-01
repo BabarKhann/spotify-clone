@@ -90,3 +90,23 @@ body {
     width: 100%;
     cursor: pointer;
 }
+
+#inputContainer button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+}
+
+.hasAccountText span {
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.hasAccountText {
+    text-align: center;
+}
+
+#registerForm {
+    display: none;
+}

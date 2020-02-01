@@ -26,9 +26,10 @@ require('includes/handlers/register-handler.php');
     <title>Welcome to Spotify Clone</title>
     <!-- Load Register Page Css -->
     <link rel="stylesheet" href="assets/css/register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-
 <body>
+
 <div id="background">
     <div id="loginContainer">
         <div id="inputContainer">
@@ -48,6 +49,11 @@ require('includes/handlers/register-handler.php');
                 </p>
 
                 <button type="submit" name="loginButton">LOG IN</button>
+
+                <div class="hasAccountText">
+                    <span id="hideLogin">Don't have an account yet? Signup here.</span>
+                </div>
+
             </form>
             <form action="register.php" id="registerForm" method="POST">
                 <h2>Login to your account</h2>
@@ -94,12 +100,47 @@ require('includes/handlers/register-handler.php');
                     <?= $account->getError('password'); ?>
                 </p>
 
-                <button type="submit" name="registerButton">Sign Up</button>
+                <button type="submit" name="registerButton">SIGN UP</button>
+
+                <div class="hasAccountText">
+                    <span id="hideRegister">Already have an account? Log in here.</span>
+                </div>
+
             </form>
+        </div> <!-- #inputContainer -->
+        <div id="loginText">
+            <h1>Get Greate Music, right now</h1>
+            <h2>Listen to loads songs free.</h2>
+            <ul>
+                <li>Discover Music</li>
+                <li>Create your playlist</li>
+                <li>Follow artists</li>
+            </ul>
         </div>
     </div>
 </div>
 <!-- #background -->
+<script src="assets/js/register.js"></script>
+
+<?php
+
+if (isset($_POST['registerButton'])) :
+    echo '<script>
+        $(document).ready(function () {
+            $("#loginForm").hide();
+            $("#registerForm").show();
+        });
+    </script>';
+else:
+    echo '<script>
+        $(document).ready(function () {
+            $("#loginForm").show();
+            $("#registerForm").hide();
+        });
+    </script>';
+endif;
+
+?>
 </body>
 
 </html>
